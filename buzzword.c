@@ -5,6 +5,8 @@
  *******/
 
  #include <stdio.h>
+ #include <stdlib.h>
+ #include <time.h>
 
  int main(int argc, const char * argv[])
  {
@@ -13,6 +15,9 @@
    const char * adjectives1[] = {"ability", "basal", "behavioral", "child-centered", "differentiated", "discovery", "flexible", "heterogeneous", "homogenous", "manipulative", "modular", "tavistock", "individualized" };
    const char * adjectives2[] = {"learning", "evaluative", "objective", "cognitive", "enrichment", "scheduling", "humanistic", "integrated", "non-graded", "training", "vertical age", "motivational", "creative"};
    const char * nouns[] = {"grouping", "modification", "accountability", "process", "core curriculum", "algorithm", "performance", "reinforcement", "open classroom", "resource", "structure", "facility", "environment"};
+
+   srand((unsigned int)time(NULL));
+   printf("\n%s %s %s\n\n", adjectives1[rand() % 13], adjectives2[rand() % 13], nouns[rand() % 13]);
 
    return 0;
  }
