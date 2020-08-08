@@ -37,7 +37,7 @@
    }
 
    // Temporary statement to check validation code by showing the number of phrase requested
-   printf("\nThe user asked for %i phrase(s)\n", numberOfPhrases);
+   // printf("\nThe user asked for %i phrase(s)\n", numberOfPhrases);
 
    // Display the instructions
    printf("Buzzword Generator\nBased on a programme from Creative Computing, Morristown, New Jersey\n\n\nThis programme prints highly acceptable phrases in 'educator-speak' that you can work into reports and speeches. Whenever a question mark is printed, type a 'Y' for another phrase or 'N' to quit.\n\n\nHere's the first phrase:\n");
@@ -47,9 +47,13 @@
    const char * adjectives2[] = {"learning", "evaluative", "objective", "cognitive", "enrichment", "scheduling", "humanistic", "integrated", "non-graded", "training", "vertical age", "motivational", "creative"};
    const char * nouns[] = {"grouping", "modification", "accountability", "process", "core curriculum", "algorithm", "performance", "reinforcement", "open classroom", "resource", "structure", "facility", "environment"};
 
-   // Seed the random number generator and display a randomly generated phrase
+   // Seed the random number generator
    srand((unsigned int)time(NULL));
-   printf("\n%s %s %s\n\n", adjectives1[rand() % 13], adjectives2[rand() % 13], nouns[rand() % 13]);
+
+   // Display the number of randomly generated phrases requested by the user
+   for (int i = 0; i < numberOfPhrases; i++) {
+     printf("\n%s %s %s\n\n", adjectives1[rand() % 13], adjectives2[rand() % 13], nouns[rand() % 13]);
+   }
 
    return EXIT_SUCCESS;
  }
