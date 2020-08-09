@@ -7,37 +7,8 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <time.h>
- #include <errno.h>
 
- // Function declarations
- void displayUsageAndExit();
-
- int main(int argc, const char * argv[]) {
-
-   int numberOfPhrases = 0;
-
-   if (argc == 1) {
-     // There was no argument so default to one phrase
-     numberOfPhrases = 1;
-   } else if(argc != 2) {
-     // An incorrect number of arguments was given, so quit with usage message
-     displayUsageAndExit();
-   } else {
-     // A single argument was given, so attempt to convert it to an integer
-     errno = 0;
-     char * inputStr;
-     long inputNum = strtol(argv[1], &inputStr, 10);
-
-     if(errno == ERANGE || *inputStr != '\0' || inputNum < 1 || inputNum > 99) {
-       // The argument could not be interpreted as an integer in the required range, so quit with usage message
-       displayUsageAndExit();
-     }
-
-     numberOfPhrases = (int) inputNum;
-   }
-
-   // Temporary statement to check validation code by showing the number of phrase requested
-   // printf("\nThe user asked for %i phrase(s)\n", numberOfPhrases);
+  int main(int argc, const char * argv[]) {
 
    // Display the instructions
    printf("Buzzword Generator\nBased on a programme from Creative Computing, Morristown, New Jersey\n\n\nThis programme prints highly acceptable phrases in 'educator-speak' that you can work into reports and speeches. Whenever a question mark is printed, type a 'Y' for another phrase or 'N' to quit.\n\n\nHere's the first phrase:\n");
@@ -50,18 +21,19 @@
    // Seed the random number generator
    srand((unsigned int)time(NULL));
 
-   // Display the number of randomly generated phrases requested by the user
-   int i = 0;
+   char rawInput[80];  // This will hold the raw input entered by the user
+   char input;   // This will store the character entered by the user
 
+   // Display random phrases while user keeps requesting them
    do {
      printf("\n%s %s %s\n\n", adjectives1[rand() % 13], adjectives2[rand() % 13], nouns[rand() % 13]);
-     i++;
-   } while (i < numberOfPhrases);
+
+     printf("?");
+     fgets(rawInput, sizeof(rawInput) / sizeof(rawInput[0]), stdin);
+     sscanf(rawInput, " %c", &input);
+   } while (input == 'y' || input == 'Y');
+
+   printf("Come back when you need help with another report!");
 
    return EXIT_SUCCESS;
- }
-
- void displayUsageAndExit() {
-   printf("\nUsage: BUZZWORD number_of_phrases\nWhere number of phrases is a whole number from 1 to 99");
-   exit(EXIT_FAILURE);
  }
