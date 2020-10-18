@@ -8,3 +8,6 @@ Buzzword takes an optional command line argument, an integer between 1 and 99 th
 buzzword 5
 ```
 If you run the program without a command line argument, it will display a single phrase and then display a question mark and wait for your input. Entering **y** or **Y** then hitting the enter or return key will display another phrase. Entering any other character and hitting enter or return will end the program.
+
+## Development diary
+If you are interested, there's a [development diary](https://laurencescotford.com/games-programming-from-the-ground-up-with-c-first-steps/) for this program here. 
